@@ -18,7 +18,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  @apply bg-slate-900
+  @apply bg-slate-900;
+  scroll-behavior:smooth
 
 }
 
@@ -161,6 +162,20 @@ body {
 }
 @media screen and (max-width: 767px) {
     .banner .slider{
+       display: flex ;
+       flex-direction: column;
+        transform-style:unset;
+        transform: perspective(0px);
+        animation: autoRun 0s linear infinite;
+        z-index: 2;
+    }
+    .banner .slider .item{
+        position:relative;
+        transform: 
+            rotateY(0deg)
+            translateZ(0px);
+    }
+    /* .banner .slider{
         width: 100px;
         height: 150px;
         left: calc(50% - 50px);
@@ -172,6 +187,6 @@ body {
     }
     .banner .content h1{
         font-size: 5em;
-    }
+    } */
 }
 

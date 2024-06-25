@@ -113,12 +113,12 @@ export function ABout() {
             <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
               My Experience
             </h2>
-            <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
+            <div className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
             I have had the opportunity to work on various real-time projects, each offering unique challenges and learning experiences. Some of the notable projects I've been involved in include:
             <li>FNT PORTAL</li>
             <li>POP CHECK</li>
             <li>WAA WORLD</li>
-            </p>
+            </div>
           </div>
           <Image
             src="/images/about-section.png"

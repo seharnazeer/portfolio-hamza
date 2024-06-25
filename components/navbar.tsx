@@ -27,7 +27,7 @@ link
     <Link  href={link} className="relative ">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer  text-md hover:opacity-[0.9] text-white"
+        className="cursor-pointer  md:text-md text-sm hover:opacity-[0.9] text-white"
       >
         {item}
       </motion.p>
@@ -110,6 +110,8 @@ export function Navbar({ className }: { className?: string }) {
           <MenuItem  link="#testy"  item="Testimonial">
           </MenuItem>
           <MenuItem  link="#skills"  item="Skills">
+          </MenuItem>
+          <MenuItem  link="#project"  item="Projects">
           </MenuItem>
           <MenuItem  link="#contact"  item="Contact">
           </MenuItem>

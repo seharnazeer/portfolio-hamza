@@ -1,13 +1,16 @@
 import React from 'react'
 import { AuroraBackground, AuroraBackgroundDemo } from './backgroundBeam'
 import { GlowingStarsBackgroundCardPreview } from './bg'
+import Title from './title'
 
 type Props = {}
 
 const Skills = (props: Props) => {
   return (
-    <div className='flex justify-center h-screen'>
+    <div id="skills" className='flex justify-center md:h-screen h-[900px] mt-10'>
+        
     <div className="banner">
+        
         <div className="slider" style={{"--quantity": 7} as React.CSSProperties}>    
           
             <div className="item" style={{"--position": 4} as React.CSSProperties}>
@@ -35,10 +38,7 @@ const Skills = (props: Props) => {
                 {/* <img src="images/dragon_10.jpg" alt="" /> */}
             </div>
         </div>
-        <div className="model">
-                <h2 className=' font-extrabold text-3xl text-white'>Skills</h2>
-        
-            </div>
+    
     </div>
     </div>
   )

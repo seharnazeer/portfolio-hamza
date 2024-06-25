@@ -1,8 +1,8 @@
 "use client";
 import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
-import React, { ReactNode } from "react";
-
+import React, { ReactNode, useEffect } from "react";
+import Aos from "aos";
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
   showRadialGradient?: boolean;
@@ -14,6 +14,9 @@ export const AuroraBackground = ({
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
+  useEffect(()=>{
+  Aos.init()
+  },[])
   return (
     <main>
       <div
@@ -66,19 +69,19 @@ export function AuroraBackgroundDemo() {
           }}
           className="relative h-screen w-full flex flex-col gap-4 items-center justify-center px-4"
         >
-          <div className="text-3xl md:w-3/5 md:text-7xl font-bold dark:text-white text-center  outline-dottedtext-ellipsis text">
+          <div className=" z-10 text-3xl md:w-3/5 md:text-7xl font-bold dark:text-white text-center  outline-dottedtext-ellipsis text">
            Full Stack Flutter Developer
           </div>
-          <div className="w-2/5 h-2 bg-slate-200">
+          <div className=" z-10 w-2/5 h-2 bg-slate-200">
 
           </div>
-          <div className="w-1/5 h-2 bg-slate-200">
+          <div className="z-10 w-1/5 h-2 bg-slate-200">
 
 </div>
-          <div className=" font-semibold text-base md:text-xl md:w-3/5 w-4/5 text-neutral-200 py-4">
+          <div className=" z-10 font-semibold text-base md:text-xl md:w-3/5 w-4/5 text-neutral-200 py-4">
           With extensive experience in both front-end and back-end development, I specialize in delivering seamless and visually appealing user experiences. 
           </div>
-        <img  src="/images/her.webp" className="sm:block hidden mix-blend-overlay w-[700px] h-[600px] object-contain absolute right-0 bottom-0"/>
+        <img  src="/images/her.webp" className="sm:block  brightness-50 hidden z-0  w-[700px] h-[600px] object-contain absolute right-0 bottom-0"/>
         </motion.div>
       </AuroraBackground>
     );
