@@ -81,7 +81,7 @@ export function AuroraBackgroundDemo() {
           <div className=" z-10 font-semibold text-base md:text-xl md:w-3/5 w-4/5 text-neutral-200 py-4">
           With extensive experience in both front-end and back-end development, I specialize in delivering seamless and visually appealing user experiences. 
           </div>
-        <img  src="/images/her.webp" className="sm:block  brightness-50 hidden z-0  w-[700px] h-[600px] object-contain absolute right-0 bottom-0"/>
+        <img  src="/images/her.webp" className="md:mt-auto mt-32 block  brightness-50 z-0  w-[700px] h-[600px] object-contain absolute right-0 bottom-0"/>
         </motion.div>
       </AuroraBackground>
     );

@@ -7,7 +7,7 @@ type Props = {}
 
 const Skills = (props: Props) => {
   return (
-    <div id="skills" className='flex justify-center md:h-screen h-[900px] mt-10'>
+    <div id="skills" className='flex justify-center md:h-screen h-[1100px] mt-10'>
         
     <div className="banner">
         
