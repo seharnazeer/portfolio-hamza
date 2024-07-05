@@ -14,43 +14,89 @@ export const AuroraBackground = ({
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
+  const generateBackground=()=>{
+    let banner = document.querySelector('.newbanner');
+let canvas : any = document.getElementById('dotsCanvas');
+canvas.width = canvas?.offsetWidth;
+canvas.height = canvas.offsetHeight;
+const ctx = canvas.getContext('2d');
+const dots : any = [];
+const arrayColors = ['#eee', '#545454', '#596d91', '#bb5a68', '#696541'];
+for (let index = 0; index < 80; index++) {
+    dots.push({
+        x:  Math.floor(Math.random() * canvas.width),
+        y:  Math.floor(Math.random() * canvas.height),
+        size: Math.random() * 3 + 5,
+        color: arrayColors[Math.floor(Math.random()* 5)]
+    });
+}
+const drawDots = () => {
+    dots.forEach((dot: any) => {
+        ctx.fillStyle = dot.color;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI*2);
+        ctx.fill();
+    })
+}
+drawDots();
+banner?.addEventListener('mousemove', (event) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawDots();
+    let mouse = {
+        x:  event.pageX - banner.getBoundingClientRect().left,
+        y:  event.pageY - banner.getBoundingClientRect().top
+    }
+    dots.forEach((dot:any) => {
+        let distance = Math.sqrt((mouse.x - dot.x) ** 2 + (mouse.y - dot.y) ** 2);
+        if(distance < 300){
+            ctx.strokeStyle = dot.color;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+    })
+})
+banner?.addEventListener('mouseout', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawDots();
+})
+window.addEventListener('resize', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = banner?.offsetWidth;
+    canvas.height = banner?.offsetHeight;
+
+    const dots:any  = [];
+    for (let index = 0; index < 50; index++) {
+        dots.push({
+            x:  Math.floor(Math.random() * canvas.width),
+            y:  Math.floor(Math.random() * canvas.height),
+            size: Math.random() * 3 + 5,
+            color: arrayColors[Math.floor(Math.random()* 5)]
+        });
+    }
+    drawDots();
+})
+  }
   useEffect(()=>{
+
   Aos.init()
+  generateBackground()
   },[])
   return (
     <main>
       <div
         className={cn(
-          "relative flex flex-col  h-[100vh] items-center justify-center bg-slate-900  text-slate-950 transition-bg",
+          "relative flex w-full  h-[100vh] items-center justify-center bg-slate-900 newbanner text-slate-950 transition-bg",
           className
         )}
         {...props}
       >
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            //   I'm sorry but this is what peak developer performance looks like // trigger warning
-            className={cn(
-              `
-            [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
-            [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
-            [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)]
-            [background-image:var(--white-gradient),var(--aurora)]
-            dark:[background-image:var(--dark-gradient),var(--aurora)]
-            [background-size:300%,_200%]
-            [background-position:50%_50%,50%_50%]
-            filter blur-[10px] invert dark:invert-0
-            after:content-[""] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] 
-            after:dark:[background-image:var(--dark-gradient),var(--aurora)]
-            after:[background-size:200%,_100%] 
-            after:animate-aurora after:[background-attachment:fixed] after:mix-blend-difference
-            pointer-events-none
-            absolute -inset-[10px] opacity-50 will-change-transform`,
-
-              showRadialGradient &&
-                `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
-            )}
-          ></div>
-        </div>
+        {/* <div> */}
+          <canvas id="dotsCanvas"  className="absolute left-0 top-0 w-full
+         h-full  overflow-hidden"></canvas>
+        {/* </div> */}
         {children}
       </div>
     </main>
